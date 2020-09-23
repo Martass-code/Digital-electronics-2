@@ -10,6 +10,11 @@
  **********************************************************************/
 
 /* Defines -----------------------------------------------------------*/
+#define DOT 200
+#define DASH 600
+#define SPACE_S 200
+#define SPACE_L 1000
+
 #define LED_GREEN   PB5     // AVR pin where green LED is connected
 #define SHORT_DELAY 500      // Delay in miliseconds
 #ifndef F_CPU
@@ -41,12 +46,51 @@ int main(void)
     // Infinite loop
     while (1)
     {
-        // Pause several miliseconds
-        _delay_ms(SHORT_DELAY);
-
-        // Invert LED in Data Register
-        // PORTB = PORTB xor 0010 0000
-        PORTB = PORTB ^ (1<<LED_GREEN);
+        // D
+		PORTB = PORTB ^ (1<<LED_GREEN);
+        _delay_ms(DASH);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_S);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(DOT);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_S);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(DOT);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_L);
+		//E
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(DOT);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_L);
+		
+		//2
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(DOT);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_S);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(DOT);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_S);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(DASH);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_S);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(DASH);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_S);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(DASH);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(SPACE_L);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		
+		//end
+		PORTB = PORTB & ~(1<<LED_GREEN);
+     
     }
 
     // Will never reach this
