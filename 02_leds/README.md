@@ -15,7 +15,7 @@
 | 0 | 0 | input | no | Tri-state, high-impedance |
 | 0 | 1 | input | yes | PBn will source current if ext. pulled low |
 | 1 | 0 | output | no | Output low value  |
-| 1 | 1 | output | yes| Output high value |
+| 1 | 1 | output | no| Output high value |
 
 | **Port** | **Pin** | **Input/output usage?** |
 | :-: | :-: | :-- |
