@@ -16,7 +16,7 @@
 #include "segment.h"        // Seven-segment display library for AVR-GCC
 
 uint8_t singles = 0, decimals = 0;
-uint8_t snake = 0;
+//uint8_t snake = 0;
 
 /* Function definitions ----------------------------------------------*/
 /**
@@ -57,17 +57,28 @@ int main(void)
 /**
  * ISR starts when Timer/Counter0 overflows. Display value on SSD.
  */
+
+///////////////////////////////////////////////////////////////////////////////////// snake
+/*
 ISR(TIMER0_OVF_vect)
 {
 	static uint8_t pos = 0;
 	SEG_update_shift_regs(snake,pos);	
 }
 
+ISR(TIMER1_OVF_vect)
+{
+	// WRITE YOUR CODE HERE
+	snake++;
+	if (snake>5) snake = 0;
+}
+*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * ISR starts when Timer/Counter1 overflows. Increment decimal counter
  */
 
-/*
+
 ISR(TIMER1_OVF_vect)
 {
     // WRITE YOUR CODE HERE
@@ -83,13 +94,8 @@ ISR(TIMER1_OVF_vect)
 		decimals=0;
 	}
 }
-*/
-ISR(TIMER1_OVF_vect)
-{
-	// WRITE YOUR CODE HERE
-	snake++;
-	if (snake>5) snake = 0;
-}
+
+
 
 
 
@@ -98,7 +104,7 @@ ISR(TIMER1_OVF_vect)
  * ISR starts when Timer/Counter0 overflows. Display value on SSD.
  */
 
-/*
+
 ISR(TIMER0_OVF_vect)
 {
 	static uint8_t pos = 0;
@@ -114,25 +120,3 @@ ISR(TIMER0_OVF_vect)
 	}
 	
 }
-*/
-
-/**
- * ISR starts when Timer/Counter1 overflows. Increment decimal counter
- */
-/*
-ISR(TIMER1_OVF_vect)
-{
-    // WRITE YOUR CODE HERE
-	singles++;
-	if (singles>9)
-	{
-	singles = 0;
-	decimals++;	
-	}
-	
-	if (decimals>5)
-	{
-		decimals=0;
-	}
-}
-*/
