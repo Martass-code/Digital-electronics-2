@@ -16,7 +16,7 @@
 #include "segment.h"
 
 /* Variables ---------------------------------------------------------*/
-/*
+
 // Active-low digit 0 to 9
 uint8_t segment_value[] = {
 	//abcdefgDP
@@ -31,9 +31,10 @@ uint8_t segment_value[] = {
 	0b00000001, // Digit 8
 	0b00011001  // Digit 9
 };
-*/
+
 
 //Snake
+/*
 uint8_t segment_value[] = {
 	//abcdefgDP // segment (snake part)
 	0b01111111,	// top
@@ -43,6 +44,8 @@ uint8_t segment_value[] = {
 	0b11110111, // bottom left
 	0b11111011  // top left
 };
+
+*/
 
 // Active-high position 0 to 3
 uint8_t segment_position[] = {

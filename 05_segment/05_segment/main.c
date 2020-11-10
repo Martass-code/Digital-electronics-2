@@ -95,10 +95,6 @@ ISR(TIMER1_OVF_vect)
 	}
 }
 
-
-
-
-
 /* Interrupt service routines ----------------------------------------*/
 /**
  * ISR starts when Timer/Counter0 overflows. Display value on SSD.
