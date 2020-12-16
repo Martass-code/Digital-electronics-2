@@ -21,11 +21,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_frame  00000024  00000000  00000000  00001170  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000038f  00000000  00000000  00001194  2**0
+  9 .debug_str    000003a5  00000000  00000000  00001194  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000048  00000000  00000000  00001523  2**0
+ 10 .debug_loc    00000048  00000000  00000000  00001539  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000010  00000000  00000000  0000156b  2**0
+ 11 .debug_ranges 00000010  00000000  00000000  00001581  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -72,27 +72,27 @@ Disassembly of section .text:
   7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000080 <main>:
+ * when a push button is pressed.
  */
 int main(void)
 {
-    /* GREEN LED */
-    // Set pin as output in Data Direction Register...
-    DDRB |= (1<<LED_GREEN);
+    /* GREEN LED */    
+    DDRB |= (1<<LED_GREEN); // Set pin as output in Data Direction Register...
   80:	25 9a       	sbi	0x04, 5	; 4
-	PORTB &= ~(1<<LED_GREEN);
+	PORTB &= ~(1<<LED_GREEN); // ...and turn LED off in Data Register
   82:	2d 98       	cbi	0x05, 5	; 5
-    // ...and turn LED off in Data Register
-	DDRC |= (1<<LED_RED);
+	/* RED LED */
+	DDRC |= (1<<LED_RED); // Set pin as output in Data Direction Register...
   84:	38 9a       	sbi	0x07, 0	; 7
-	PORTC &= ~(1<<LED_RED);
+	PORTC &= ~(1<<LED_RED); // ...and turn LED off in Data Register
   86:	40 98       	cbi	0x08, 0	; 8
-	
-	DDRD &= ~(1<<PUSH_BUTTON);
+	/* PUSHBUTTON */
+	DDRD &= ~(1<<PUSH_BUTTON); // Set pin as input in Data Direction Register...
   88:	50 98       	cbi	0x0a, 0	; 10
-	PORTD |= (1<<PUSH_BUTTON);
+	PORTD |= (1<<PUSH_BUTTON); // Set pull-up resistor
   8a:	58 9a       	sbi	0x0b, 0	; 11
     {
-		if(bit_is_clear(PIND, PUSH_BUTTON))
+		if(bit_is_clear(PIND, PUSH_BUTTON)) //if button is pressed blink with LEDs
 		{
         // Pause several milliseconds
         _delay_ms(BLINK_DELAY);
@@ -100,12 +100,12 @@ int main(void)
   8c:	20 e2       	ldi	r18, 0x20	; 32
 		PORTC ^= (1<<LED_RED);
   8e:	91 e0       	ldi	r25, 0x01	; 1
-    // WRITE YOUR CODE HERE
-
-    // Infinite loop
+	PORTD |= (1<<PUSH_BUTTON); // Set pull-up resistor
+	
+	    // Infinite loop
     while (1)
     {
-		if(bit_is_clear(PIND, PUSH_BUTTON))
+		if(bit_is_clear(PIND, PUSH_BUTTON)) //if button is pressed blink with LEDs
   90:	48 99       	sbic	0x09, 0	; 9
   92:	fe cf       	rjmp	.-4      	; 0x90 <main+0x10>
 	#else
